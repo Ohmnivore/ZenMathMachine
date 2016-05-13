@@ -67,6 +67,14 @@ class Addition extends FlxGroup {
 			input.setText(Char + input.getText());
 	}
 	
+	public function inputIsEmpty():Bool {
+		return input.getText().length == 0;
+	}
+	
+	public function inputIsValid():Bool {
+		return answer == Std.parseInt(input.getText());
+	}
+	
 	override public function update():Void {
 		var dx:Float = x - oldx;
 		var dy:Float = y - oldy;

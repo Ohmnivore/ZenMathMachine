@@ -1,6 +1,5 @@
 # TODO
 * Name
-* Swipe right to submit
 * Menu
 * Different modes
 * Daily count

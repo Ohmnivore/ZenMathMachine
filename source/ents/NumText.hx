@@ -44,6 +44,13 @@ class NumText extends FlxGroup {
 		return text.length * NumTextChar.SIZE;
 	}
 	
+	public function setColor(Color:Int):Void {
+		for (i in 0...members.length) {
+			var char:NumTextChar = cast members[i];
+			char.color = Color;
+		}
+	}
+	
 	override public function update():Void {
 		for (i in 0...members.length) {
 			var char:NumTextChar = cast members[i];

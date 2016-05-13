@@ -16,6 +16,14 @@ import modes.Addition;
 
 class PlayState extends FlxState {
 	
+	private var keypad:KeyPad;
+	
+	private var cur:Addition;
+	private var curTween:FlxTween;
+	private var curOriginalX:Float;
+	private var swipeBeginX:Float;
+	private var targetx:Float;
+	
 	override public function create():Void {
 		super.create();
 		Reg.color = new ents.ColorPalette(0xfffdf6e3, 0xffeee8d5, 0xff93a1a1, 0xffcb4b16, 0xffd33682, 0xff2aa198);
@@ -24,29 +32,62 @@ class PlayState extends FlxState {
 		FlxG.scaleMode = new PixelPerfectScaleMode();
 		FlxG.mouse.load("assets/images/cursor.png", 1);
 		
-		var keypad:KeyPad = new KeyPad(0, 480);
+		keypad = new KeyPad(0, 480);
 		add(keypad);
-		keypad.onKey = onKey;
 		FlxTween.tween(keypad, {"y": 240}, 0.7, {ease: FlxEase.elasticOut});
 		
-		//var t1:NumText = new NumText(8 + 36, 8, "113");
-		//var t2:NumText = new NumText(8, 8 + 36, "+ 47");
-		//var bar:ResultBar = new ResultBar(8, 8 + 36 * 2 + 4, t2.getWidth());
-		//var t3:NumText = new NumText(8 + 36, bar.y + bar.height + 4, "160");
-		//add(t1);
-		//add(t2);
-		//add(bar);
-		//add(t3);
-		
-		var tadd:Addition = new Addition();
-		add(tadd);
-		keypad.onKey = tadd.onKey;
-		tadd.y = (FlxG.height / 2 - tadd.height) / 2;
-		tadd.x = -tadd.width;
-		FlxTween.tween(tadd, {"x": (FlxG.width - tadd.width) / 2}, 0.7, {ease: FlxEase.elasticOut});
+		addChallenge();
 	}
 	
-	private function onKey(Char:String):Void {
-		trace(Char);
+	private function addChallenge():Void {
+		cur = new Addition();
+		add(cur);
+		keypad.onKey = cur.onKey;
+		cur.y = (FlxG.height / 2 - cur.height) / 2;
+		cur.x = -cur.width;
+		targetx = (FlxG.width - cur.width) / 2;
+		curOriginalX = (FlxG.width - cur.width) / 2;
+		curTween = FlxTween.tween(cur, {"x": (FlxG.width - cur.width) / 2}, 0.7, {ease: FlxEase.elasticOut});
+	}
+	
+	private function onDoneChallenge(T:FlxTween):Void {
+		cur.kill();
+		cur.destroy();
+		remove(cur, true);
+		
+		addChallenge();
+	}
+	
+	override public function update():Void {
+		if (curTween.finished) {
+			if (FlxG.mouse.justPressed)
+				swipeBeginX = FlxG.mouse.x;
+			if (FlxG.mouse.pressed) {
+				var dx:Float = FlxG.mouse.x - swipeBeginX;
+				targetx = curOriginalX + Math.max(dx, 0);
+				
+				if (targetx + cur.width >= FlxG.width) {
+					swipeBeginX = FlxG.mouse.x;
+					
+					if (cur.inputIsEmpty())
+						curTween = FlxTween.tween(cur, {"x": curOriginalX}, 0.7, {ease: FlxEase.elasticOut});
+					else if (cur.inputIsValid())
+						curTween = FlxTween.tween(cur, {"y": -cur.height}, 0.3,
+							{ease: FlxEase.backIn, complete: onDoneChallenge});
+					else {
+						curTween = FlxTween.tween(cur, {"x": curOriginalX}, 0.7, {ease: FlxEase.elasticOut});
+						cur.input.setText(Std.string(cur.answer));
+						cur.input.setColor(Reg.color.op);
+					}
+				}
+			}
+			else {
+				targetx = curOriginalX;
+			}
+			
+			cur.x = cur.x * 0.85 + targetx * 0.15;
+		}
+		
+		super.update();
 	}
 }

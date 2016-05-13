@@ -1,15 +1,13 @@
 package;
+import flixel.FlxState;
 
 /**
  * ...
  * @author Ohmnivore
  */
-class MenuState
-{
-
-	public function new() 
-	{
+class MenuState extends FlxState {
+	
+	public function new() {
 		
 	}
-	
 }

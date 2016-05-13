@@ -20,7 +20,10 @@ class KeyPad extends FlxGroup {
 		
 		x = X;
 		y = Y;
-		
+		addKeys();
+	}
+	
+	private function addKeys():Void {
 		add(new Key(this, 0, 0, "0"));
 		add(new Key(this, 80, 0, "1"));
 		add(new Key(this, 160, 0, "2"));
