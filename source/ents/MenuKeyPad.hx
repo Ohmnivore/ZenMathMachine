@@ -13,8 +13,10 @@ class MenuKeyPad extends KeyPad {
 		
 		add(new Key(this, xv, 0, "+"));
 		add(new Key(this, xv, 80, "-"));
-		add(new Key(this, xv, 160, "*"));
-		add(new Key(this, xv, 240, "/"));
-		add(new Key(this, xv, 320, "%"));
+		add(new Key(this, xv - 80, 160, "%"));
+		add(new Key(this, xv, 160, "{"));
+		add(new Key(this, xv + 80, 160, "@"));
+		add(new Key(this, xv, 240, "*"));
+		add(new Key(this, xv, 320, "/"));
 	}
 }

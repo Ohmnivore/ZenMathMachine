@@ -89,6 +89,12 @@ class NumTextChar extends FlxSprite {
 		animation.add("/", [14], 30, false);
 		animation.add(" ", [15], 30, false);
 		animation.add("%", [16], 30, false);
+		animation.add("[", [17], 30, false);
+		animation.add("]", [18], 30, false);
+		animation.add("{", [19], 30, false);
+		animation.add("}", [20], 30, false);
+		animation.add("(", [21], 30, false);
+		animation.add("@", [22], 30, false);
 		
 		setChar(Char);
 	}

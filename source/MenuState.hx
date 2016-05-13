@@ -48,6 +48,9 @@ class MenuState extends FlxState {
 			Reg.savePalette();
 			FlxG.switchState(new MenuState(true));
 		}
+		else if (Char == "@") {
+			FlxG.openURL("https://twitter.com/4_AM_Games");
+		}
 	}
 	
 	private function openChallenge():Void {

@@ -66,14 +66,16 @@ class PlayState extends FlxState {
 				var dx:Float = FlxG.mouse.x - swipeBeginX;
 				targetx = curOriginalX + Math.max(dx, 0);
 				
-				if (targetx + cur.width >= FlxG.width) {
+				if (cur.x + cur.width >= FlxG.width && targetx + cur.width >= FlxG.width) {
 					swipeBeginX = FlxG.mouse.x;
 					
 					if (cur.inputIsEmpty())
 						curTween = FlxTween.tween(cur, {"x": curOriginalX}, 0.7, {ease: FlxEase.elasticOut});
-					else if (cur.inputIsValid())
+					else if (cur.inputIsValid()) {
 						curTween = FlxTween.tween(cur, {"y": -cur.height}, 0.3,
 							{ease: FlxEase.backIn, complete: onDoneChallenge});
+						//cur.x = targetx = cur.x * 0.25 + (FlxG.width - cur.width) * 0.75;
+					}
 					else {
 						curTween = FlxTween.tween(cur, {"x": curOriginalX}, 0.7, {ease: FlxEase.elasticOut});
 						cur.input.setText(Std.string(cur.answer));
