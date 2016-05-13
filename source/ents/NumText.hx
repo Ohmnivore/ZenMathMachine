@@ -45,19 +45,21 @@ class NumText extends FlxGroup {
 	}
 	
 	override public function update():Void {
-		super.update();
-		
 		for (i in 0...members.length) {
 			var char:NumTextChar = cast members[i];
 			char.x = NumTextChar.SIZE * i + x;
 			char.y = y;
 		}
+		
+		super.update();
 	}
 }
 
 class NumTextChar extends FlxSprite {
 	
 	static public inline var SIZE:Int = 36;
+	
+	public var char:String;
 	
 	public function new(Char:String) {
 		super();
@@ -84,9 +86,10 @@ class NumTextChar extends FlxSprite {
 	}
 	
 	public function setChar(Char:String):Void {
-		animation.play(Char);
+		char = Char;
+		animation.play(char);
 		
-		var code:Int = Char.charCodeAt(0);
+		var code:Int = char.charCodeAt(0);
 		if (code >= 48 && code <= 57)
 			color = Reg.color.num;
 		else

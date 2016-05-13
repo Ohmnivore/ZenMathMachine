@@ -7,5 +7,6 @@ import ents.ColorPalette;
  */
 class Reg {
 	
-	static public var color:ents.ColorPalette;
+	static public var color:ColorPalette;
+	static public var s:PlayState;
 }
