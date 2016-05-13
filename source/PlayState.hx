@@ -12,6 +12,7 @@ import flixel.system.scaleModes.StageSizeScaleMode;
 import flixel.text.FlxText;
 import flixel.tweens.FlxTween;
 import flixel.tweens.FlxEase;
+import flixel.util.FlxTimer;
 import modes.Addition;
 
 class PlayState extends FlxState {
@@ -26,13 +27,12 @@ class PlayState extends FlxState {
 	
 	override public function create():Void {
 		super.create();
-		Reg.color = new ents.ColorPalette(0xfffdf6e3, 0xffeee8d5, 0xff93a1a1, 0xffcb4b16, 0xffd33682, 0xff2aa198);
 		
 		FlxG.camera.bgColor = Reg.color.bg;
 		FlxG.scaleMode = new PixelPerfectScaleMode();
 		FlxG.mouse.load("assets/images/cursor.png", 1);
 		
-		keypad = new KeyPad(0, 480);
+		keypad = new KeyPad(0, FlxG.height);
 		add(keypad);
 		FlxTween.tween(keypad, {"y": 240}, 0.7, {ease: FlxEase.elasticOut});
 		
@@ -89,5 +89,14 @@ class PlayState extends FlxState {
 		}
 		
 		super.update();
+		
+		if (FlxG.keys.justPressed.ESCAPE) {
+			FlxTween.manager.clear();
+			for (m in members)
+				untyped FlxTween.tween(m, {"y": m.y - FlxG.height}, 0.3, {ease: FlxEase.backIn});
+			new FlxTimer(0.3, function(T:FlxTimer) {
+				FlxG.switchState(new MenuState());
+			});
+		}
 	}
 }

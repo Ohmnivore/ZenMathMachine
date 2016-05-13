@@ -15,6 +15,8 @@ class KeyPad extends FlxGroup {
 	public var y:Float;
 	public var onKey:String->Void;
 	
+	private var drawHack:Bool = false;
+	
 	public function new(X:Float, Y:Float) {
 		super();
 		
@@ -46,6 +48,14 @@ class KeyPad extends FlxGroup {
 			key.x = x + key.offsetx;
 			key.y = y + key.offsety;
 		}
+	}
+	
+	override public function draw():Void {
+		if (!drawHack) {
+			drawHack = true;
+			return;
+		}
+		super.draw();
 	}
 }
 

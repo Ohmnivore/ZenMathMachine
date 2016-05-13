@@ -1,9 +1,8 @@
 # TODO
 * Name
-* Menu
+* Fix Addition position delay
 * Different modes
 * Daily count
 * Varying difficulty
-* Dark theme
 * Tweens everywhere
 * Icon
