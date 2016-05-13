@@ -58,7 +58,7 @@ class MenuState extends FlxState {
 			openChallenge();
 		}
 		else if (Char == "%") {
-			Reg.isLight = !Reg.isLight;
+			Reg.isDark = !Reg.isDark;
 			Reg.savePalette();
 			FlxG.switchState(new MenuState(true));
 		}

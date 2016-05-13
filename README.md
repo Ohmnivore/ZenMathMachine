@@ -1,5 +1,5 @@
 # TODO
-* Name
 * Daily count
 * Varying difficulty
+* Name
 * Icon

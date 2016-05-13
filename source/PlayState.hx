@@ -81,7 +81,7 @@ class PlayState extends FlxState {
 						cur.input.setText(Std.string(cur.answer));
 						cur.input.setColor(Reg.color.op);
 						
-						FlxG.camera.shake(0.005, 0.33);
+						FlxG.camera.shake(0.006, 0.35);
 					}
 				}
 			}

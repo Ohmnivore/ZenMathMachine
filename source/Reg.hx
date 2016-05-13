@@ -11,21 +11,21 @@ class Reg {
 	
 	static public var light:ColorPalette;
 	static public var dark:ColorPalette;
-	static public var isLight:Bool = false;
+	static public var isDark:Bool = false;
 	static public var color:ColorPalette;
 	
 	static public function loadPalette():Void {
 		FlxG.save.bind("mentalmath");
-		isLight = FlxG.save.data.isLight == true;
-		if (isLight)
-			color = light;
-		else
+		isDark = FlxG.save.data.isDark == true;
+		if (isDark)
 			color = dark;
+		else
+			color = light;
 		FlxG.save.close();
 	}
 	static public function savePalette():Void {
 		FlxG.save.bind("mentalmath");
-		FlxG.save.data.isLight = isLight;
+		FlxG.save.data.isDark = isDark;
 		FlxG.save.close();
 	}
 	
