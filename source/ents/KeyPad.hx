@@ -4,6 +4,8 @@ import ents.NumText.NumTextChar;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.group.FlxGroup;
+import flixel.tweens.FlxTween;
+import flixel.tweens.FlxEase;
 
 /**
  * ...
@@ -72,6 +74,10 @@ class Key extends FlxGroup {
 	public var char:NumTextChar;
 	public var pad:KeyPad;
 	
+	private var bgTween:FlxTween;
+	private var charTween:FlxTween;
+	private var tweenPressedDone:Bool = false;
+	
 	public function new(Pad:KeyPad, OffsetX:Float, OffsetY:Float, Char:String) {
 		super();
 		
@@ -87,6 +93,16 @@ class Key extends FlxGroup {
 		
 		char = new NumTextChar(Char);
 		add(char);
+		
+		bg.color = Reg.color.bg2;
+		char.color = Reg.color.num;
+	}
+	
+	private function onTweenPressed(T:FlxTween):Void {
+		tweenPressedDone = true;
+	}
+	private function onTweenReleased(T:FlxTween):Void {
+		tweenPressedDone = false;
 	}
 	
 	override public function update():Void {
@@ -101,13 +117,18 @@ class Key extends FlxGroup {
 		if (FlxG.mouse.pressed && bg.overlapsPoint(FlxG.mouse.getWorldPosition())) {
 			bg.color = Reg.color.bg;
 			char.color = Reg.color.op;
+			tweenPressedDone = true;
 		}
 		else if (FlxG.mouse.justReleased && pad.onKey != null && bg.overlapsPoint(FlxG.mouse.getWorldPosition())) {
 			pad.onKey(char.char);
 		}
 		else {
-			bg.color = Reg.color.bg2;
-			char.color = Reg.color.num;
+			if (tweenPressedDone && (bgTween == null || bgTween.finished))
+				bgTween = FlxTween.color(bg, 0.33, bg.color, Reg.color.bg2, 0.99, 1,
+					{ease: FlxEase.cubeOut, complete: onTweenReleased});
+			if (tweenPressedDone && (charTween == null || charTween.finished))
+				charTween = FlxTween.color(char, 0.33, char.color, Reg.color.num, 0.99, 1,
+					{ease: FlxEase.cubeOut, complete: onTweenReleased});
 		}
 	}
 }
