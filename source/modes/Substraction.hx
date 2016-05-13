@@ -5,10 +5,10 @@ import flixel.util.FlxRandom;
  * ...
  * @author Ohmnivore
  */
-class Addition extends BaseMode {
+class Substraction extends BaseMode {
 	
 	override function getOperator():String {
-		return "+";
+		return "-";
 	}
 	
 	override private function getOperands():Array<Int> {
@@ -18,8 +18,9 @@ class Addition extends BaseMode {
 		for (i in 0...getCount()) {
 			var operand:Int = getOperand();
 			ret.push(operand);
-			answer += operand;
+			answer -= operand;
 		}
+		answer += ret[0] * 2;
 		return ret;
 	}
 	

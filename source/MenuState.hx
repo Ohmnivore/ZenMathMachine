@@ -5,6 +5,7 @@ import flixel.FlxState;
 import flixel.system.scaleModes.PixelPerfectScaleMode;
 import flixel.tweens.FlxTween;
 import flixel.tweens.FlxEase;
+import modes.*;
 
 /**
  * ...
@@ -41,6 +42,19 @@ class MenuState extends FlxState {
 	
 	private function onKey(Char:String):Void {
 		if (Char == "+") {
+			Reg.mode = Addition;
+			openChallenge();
+		}
+		else if (Char == "-") {
+			Reg.mode = Substraction;
+			openChallenge();
+		}
+		else if (Char == "*") {
+			Reg.mode = Multiplication;
+			openChallenge();
+		}
+		else if (Char == "/") {
+			Reg.mode = Division;
 			openChallenge();
 		}
 		else if (Char == "%") {

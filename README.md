@@ -1,7 +1,7 @@
 # TODO
 * Name
-* Different modes
+* Division
 * Daily count
 * Varying difficulty
-* Tweens everywhere
+* Tweens everywhere (color?)
 * Icon

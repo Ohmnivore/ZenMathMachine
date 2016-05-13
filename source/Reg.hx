@@ -1,6 +1,7 @@
 package;
 import ents.ColorPalette;
 import flixel.FlxG;
+import modes.BaseMode;
 
 /**
  * ...
@@ -29,4 +30,5 @@ class Reg {
 	}
 	
 	static public var s:PlayState;
+	static public var mode:Class<BaseMode>;
 }

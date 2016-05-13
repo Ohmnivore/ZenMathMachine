@@ -13,13 +13,13 @@ import flixel.text.FlxText;
 import flixel.tweens.FlxTween;
 import flixel.tweens.FlxEase;
 import flixel.util.FlxTimer;
-import modes.Addition;
+import modes.BaseMode;
 
 class PlayState extends FlxState {
 	
 	private var keypad:KeyPad;
 	
-	private var cur:Addition;
+	private var cur:BaseMode;
 	private var curTween:FlxTween;
 	private var curOriginalX:Float;
 	private var swipeBeginX:Float;
@@ -40,7 +40,7 @@ class PlayState extends FlxState {
 	}
 	
 	private function addChallenge():Void {
-		cur = new Addition();
+		cur = Type.createInstance(Reg.mode, []);
 		add(cur);
 		keypad.onKey = cur.onKey;
 		cur.y = (FlxG.height / 2 - cur.height) / 2;
@@ -80,6 +80,8 @@ class PlayState extends FlxState {
 						curTween = FlxTween.tween(cur, {"x": curOriginalX}, 0.7, {ease: FlxEase.elasticOut});
 						cur.input.setText(Std.string(cur.answer));
 						cur.input.setColor(Reg.color.op);
+						
+						FlxG.camera.shake(0.005, 0.33);
 					}
 				}
 			}
