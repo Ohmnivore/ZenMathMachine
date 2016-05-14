@@ -2,7 +2,7 @@
 <project>
 	<!------------------------------APPLICATION SETTINGS---------------------------->
 	
-	<app title="The Very Zen Mental Math Machine" file="ZenMathMachine" main="Main" version="1.0.0" company="4AM Games" />
+	<app title="The Very Zen Mental Math Machine" package="com.fouramgames.zenmathmachine" file="ZenMathMachine" main="Main" version="1.0.0" company="4AM Games" />
 	
 	<!--The flixel preloader is not accurate in Chrome. You can use it regularly if you embed the swf into a html file
 	<!--or you can set the actual size of your file manually at "FlxPreloaderBase-onUpdate-bytesTotal"!-->
@@ -83,5 +83,21 @@
 	<android install-location="preferExternal" />
 	<template path="AndroidManifest.xml" rename="AndroidManifest.xml" if="android"/>
 	<certificate path="android_key.keystore" alias="zenmathmachine" />
+		
+	<!--Icon sizes (full Android and Windows coverage): 16, 24, 32, 48, 64, 72, 96, 128, 144, 180, 192, 256, 512-->
+	<icon path="icons/icon16.png" size="16" />
+	<icon path="icons/icon32.png" size="32" />
+	<icon path="icons/icon48.png" size="48" />
+	<icon path="icons/icon64.png" size="64" />
+	<icon path="icons/icon96.png" size="96" />
+	<icon path="icons/icon128.png" size="128" />
+	<icon path="icons/icon144.png" size="144" />
+	<icon path="icons/icon256.png" size="256" />
+	<icon path="icons/icon512.png" size="512" />
+		
+	<icon path="icons/icon24.png" size="24" />
+	<icon path="icons/icon72.png" size="72" />
+	<icon path="icons/icon180.png" size="180" />
+	<icon path="icons/icon192.png" size="192" />
 	
 </project>

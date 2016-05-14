@@ -25,7 +25,9 @@ class MenuState extends FlxState {
 	override public function create():Void {
 		super.create();
 		Reg.loadPalette();
+		#if debug
 		Reg.initDebug();
+		#end
 		//ChallengeCounter.init();
 		
 		FlxG.camera.bgColor = Reg.color.bg;
