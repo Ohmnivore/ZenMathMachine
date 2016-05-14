@@ -22,11 +22,28 @@ class Reg {
 			color = dark;
 		else
 			color = light;
-		FlxG.save.flush();
 	}
 	static public function savePalette():Void {
 		FlxG.save.bind(SAVE_ID);
 		FlxG.save.data.isDark = isDark;
+		FlxG.save.flush();
+	}
+	
+	static public var difficulty:Int;
+	static public function loadDifficulty():Void {
+		FlxG.save.bind(SAVE_ID);
+		if (Reflect.field(FlxG.save.data, "difficulty") == null)
+			difficulty = 2;
+		else
+			difficulty = Reflect.field(FlxG.save.data, "difficulty");
+	}
+	static public function addDifficulty():Void {
+		difficulty++;
+		if (difficulty > 4)
+			difficulty = 0;
+		
+		FlxG.save.bind(SAVE_ID);
+		FlxG.save.data.difficulty = difficulty;
 		FlxG.save.flush();
 	}
 	

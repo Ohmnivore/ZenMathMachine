@@ -1,4 +1,4 @@
-# The Very Zen Mental Math Machine (ZenMathMachine)
+# The Very Zen Mental Math Machine
 This is an exercise in UI design and tweening. The idea was to make a dead simple math game feel as good as possible.
 The project took around four days to complete. Some parts of the code could definitely be cleaned up, I'll do that eventually.
 

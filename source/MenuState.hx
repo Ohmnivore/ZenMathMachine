@@ -25,6 +25,7 @@ class MenuState extends FlxState {
 	override public function create():Void {
 		super.create();
 		Reg.loadPalette();
+		Reg.loadDifficulty();
 		#if debug
 		Reg.initDebug();
 		#end
@@ -72,6 +73,11 @@ class MenuState extends FlxState {
 		//}
 	}
 	
+	override public function update():Void {
+		super.update();
+		keypad.setDifficulty(Reg.difficulty);
+	}
+	
 	private function onKey(Char:String):Void {
 		if (Char == "+") {
 			Reg.mode = Addition;
@@ -93,6 +99,9 @@ class MenuState extends FlxState {
 			Reg.isDark = !Reg.isDark;
 			Reg.savePalette();
 			FlxG.switchState(new MenuState(true));
+		}
+		else if (Char == "[" || Char == "]" || Char == "{" || Char == "}" || Char == "(") {
+			Reg.addDifficulty();
 		}
 		else if (Char == "@") {
 			FlxG.openURL("https://twitter.com/4_AM_Games");

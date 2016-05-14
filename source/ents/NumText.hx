@@ -102,14 +102,16 @@ class NumTextChar extends FlxSprite {
 		setChar(Char);
 	}
 	
-	public function setChar(Char:String):Void {
+	public function setChar(Char:String, ChangeColor:Bool = true):Void {
 		char = Char;
 		animation.play(char);
 		
-		var code:Int = char.charCodeAt(0);
-		if (code >= 48 && code <= 57)
-			color = Reg.color.num;
-		else
-			color = Reg.color.op;
+		if (ChangeColor) {
+			var code:Int = char.charCodeAt(0);
+			if (code >= 48 && code <= 57)
+				color = Reg.color.num;
+			else
+				color = Reg.color.op;
+		}
 	}
 }
