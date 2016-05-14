@@ -1,5 +1,5 @@
 # TODO
-* Daily count
+* Swipe right indicator arrow
 * Varying difficulty
 * Name
-* Icon
+* Android build & icon

@@ -74,13 +74,12 @@ class PlayState extends FlxState {
 					else if (cur.inputIsValid()) {
 						curTween = FlxTween.tween(cur, {"y": -cur.height}, 0.3,
 							{ease: FlxEase.backIn, complete: onDoneChallenge});
-						//cur.x = targetx = cur.x * 0.25 + (FlxG.width - cur.width) * 0.75;
+						cur.submit();
+						targetx = FlxG.width - cur.width;
 					}
 					else {
 						curTween = FlxTween.tween(cur, {"x": curOriginalX}, 0.7, {ease: FlxEase.elasticOut});
-						cur.input.setText(Std.string(cur.answer));
-						cur.input.setColor(Reg.color.op);
-						
+						cur.correct();
 						FlxG.camera.shake(0.006, 0.35);
 					}
 				}
@@ -91,6 +90,8 @@ class PlayState extends FlxState {
 			
 			cur.x = cur.x * 0.85 + targetx * 0.15;
 		}
+		if (curTween != null && curTween.ease == FlxEase.backIn) // temp solution
+			cur.x = cur.x * 0.65 + targetx * 0.35;
 		
 		super.update();
 		

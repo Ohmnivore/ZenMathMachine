@@ -1,5 +1,6 @@
 package;
 import ents.MenuKeyPad;
+import ents.NumText;
 import flixel.FlxG;
 import flixel.FlxState;
 import flixel.system.scaleModes.PixelPerfectScaleMode;
@@ -24,6 +25,8 @@ class MenuState extends FlxState {
 	override public function create():Void {
 		super.create();
 		Reg.loadPalette();
+		Reg.initDebug();
+		//ChallengeCounter.init();
 		
 		FlxG.camera.bgColor = Reg.color.bg;
 		FlxG.scaleMode = new PixelPerfectScaleMode();
@@ -38,6 +41,33 @@ class MenuState extends FlxState {
 			keypad.y = FlxG.height;
 			FlxTween.tween(keypad, {"y": 40}, 0.7, {ease: FlxEase.elasticOut});
 		}
+		
+		//var plus:NumText = new NumText(0, 0, ChallengeCounter.getString("+"));
+		//add(plus);
+		//plus.x = 120 - 72 - 4 + (72 - plus.getWidth());
+		//plus.y = 80 - 18;
+		//
+		//var minus:NumText = new NumText(0, 0, ChallengeCounter.getString("-"));
+		//add(minus);
+		//minus.x = 120 - 72 - 4 + (72 - minus.getWidth());
+		//minus.y = 160 - 18;
+		//
+		//var mult:NumText = new NumText(0, 0, ChallengeCounter.getString("*"));
+		//add(mult);
+		//mult.x = 200 + 4 + (72 - mult.getWidth());
+		//mult.y = 320 - 18;
+		//
+		//var div:NumText = new NumText(0, 0, ChallengeCounter.getString("/"));
+		//add(div);
+		//div.x = 200 + 4 + (72 - div.getWidth());
+		//div.y = 400 - 18;
+		//
+		//if (!skipintro) {
+			//for (w in [plus, minus, mult, div]) {
+				//w.y += 440;
+				//FlxTween.tween(w, {"y": w.y - 440}, 0.7, {ease: FlxEase.elasticOut});
+			//}
+		//}
 	}
 	
 	private function onKey(Char:String):Void {
@@ -68,10 +98,13 @@ class MenuState extends FlxState {
 	}
 	
 	private function openChallenge():Void {
-		FlxTween.tween(keypad, {"y": -400}, 0.3, {ease: FlxEase.backIn, complete:
-			function(T:FlxTween) {
-				FlxG.switchState(new PlayState());
-			}
-		});
+		for (m in members) {
+			untyped FlxTween.tween(m, {"y": m.y - 440}, 0.3, {ease: FlxEase.backIn, complete:
+				function(T:FlxTween) {
+					FlxTween.manager.clear();
+					FlxG.switchState(new PlayState());
+				}
+			});
+		}
 	}
 }

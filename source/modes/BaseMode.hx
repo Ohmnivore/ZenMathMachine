@@ -11,6 +11,7 @@ class BaseMode extends FlxGroup {
 	
 	public var answer:Int;
 	public var input:NumText;
+	private var corrected:Bool = false;
 	
 	public var x:Float = 0;
 	public var y:Float = 0;
@@ -74,6 +75,17 @@ class BaseMode extends FlxGroup {
 	
 	public function inputIsValid():Bool {
 		return answer == Std.parseInt(input.getText());
+	}
+	
+	public function correct():Void {
+		input.setText(Std.string(answer));
+		input.setColor(Reg.color.op);
+		corrected = true;
+	}
+	
+	public function submit():Void {
+		//if (!corrected)
+			//ChallengeCounter.add(getOperator());
 	}
 	
 	override public function update():Void {
