@@ -30,6 +30,8 @@ class Reg {
 		FlxG.save.flush();
 	}
 	
+	static public var fSize:Int = 36;
+	static public var margin:Int = 4;
 	static public var s:PlayState;
 	static public var mode:Class<BaseMode>;
 	static public var hintShown:Bool = false;

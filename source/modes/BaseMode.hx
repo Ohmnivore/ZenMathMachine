@@ -28,7 +28,7 @@ class BaseMode extends FlxGroup {
 		for (i in 0...operands.length) {
 			var operand:Int = operands[i];
 			
-			var t:NumText = new NumText(NumTextChar.SIZE, i * NumTextChar.SIZE, Std.string(operand));
+			var t:NumText = new NumText(Reg.fSize, i * Reg.fSize, Std.string(operand));
 			add(t);
 			toperands.push(t);
 		}
@@ -37,17 +37,17 @@ class BaseMode extends FlxGroup {
 		for (o in toperands)
 			o.x += maxWidth - o.getWidth();
 		
-		input = new NumText(NumTextChar.SIZE, NumTextChar.SIZE * toperands.length + 12, "");
+		input = new NumText(Reg.fSize, Reg.fSize * toperands.length + 12, "");
 		add(input);
 		
-		var operator:NumText = new NumText(0, NumTextChar.SIZE, getOperator());
+		var operator:NumText = new NumText(0, Reg.fSize, getOperator());
 		add(operator);
 		
-		var bar:ResultBar = new ResultBar(NumTextChar.SIZE, NumTextChar.SIZE * toperands.length + 4, maxWidth);
+		var bar:ResultBar = new ResultBar(Reg.fSize, Reg.fSize * toperands.length + 4, maxWidth);
 		add(bar);
 		
-		width = maxWidth + NumTextChar.SIZE;
-		height = (toperands.length + 1) * NumTextChar.SIZE + 12;
+		width = maxWidth + Reg.fSize;
+		height = (toperands.length + 1) * Reg.fSize + 12;
 	}
 	
 	private function getOperator():String {
@@ -114,6 +114,6 @@ class BaseMode extends FlxGroup {
 			if (owidth > ret)
 				ret = owidth;
 		}
-		return ret * NumTextChar.SIZE;
+		return ret * Reg.fSize;
 	}
 }

@@ -63,8 +63,6 @@ class KeyPad extends FlxGroup {
 
 class Key extends FlxGroup {
 	
-	static private inline var SPACING:Int = 8;
-	
 	public var x:Float;
 	public var y:Float;
 	public var offsetx:Float;
@@ -88,7 +86,7 @@ class Key extends FlxGroup {
 		offsety = OffsetY;
 		
 		bg = new FlxSprite();
-		bg.makeGraphic(80 - SPACING, 80 - SPACING, 0xffffffff);
+		bg.makeGraphic(80 - Reg.margin * 2, 80 - Reg.margin * 2, 0xffffffff);
 		add(bg);
 		
 		char = new NumTextChar(Char);
@@ -108,11 +106,11 @@ class Key extends FlxGroup {
 	override public function update():Void {
 		super.update();
 		
-		bg.x = x + SPACING / 2;
-		bg.y = y + SPACING / 2;
+		bg.x = x + Reg.margin;
+		bg.y = y + Reg.margin;
 		
-		char.x = bg.x + (bg.width - NumTextChar.SIZE) / 2;
-		char.y = bg.y + (bg.height - NumTextChar.SIZE) / 2;
+		char.x = bg.x + (bg.width - Reg.fSize) / 2;
+		char.y = bg.y + (bg.height - Reg.fSize) / 2;
 		
 		if (FlxG.mouse.pressed && bg.overlapsPoint(FlxG.mouse.getWorldPosition())) {
 			bg.color = Reg.color.bg;
@@ -124,10 +122,10 @@ class Key extends FlxGroup {
 		}
 		else {
 			if (tweenPressedDone && (bgTween == null || bgTween.finished))
-				bgTween = FlxTween.color(bg, 0.33, bg.color, Reg.color.bg2, 0.99, 1,
+				bgTween = FlxTween.color(bg, 0.33, bg.color, Reg.color.bg2, 1, 1,
 					{ease: FlxEase.cubeOut, complete: onTweenReleased});
 			if (tweenPressedDone && (charTween == null || charTween.finished))
-				charTween = FlxTween.color(char, 0.33, char.color, Reg.color.num, 0.99, 1,
+				charTween = FlxTween.color(char, 0.33, char.color, Reg.color.num, 1, 1,
 					{ease: FlxEase.cubeOut, complete: onTweenReleased});
 		}
 	}

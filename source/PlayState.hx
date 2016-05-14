@@ -8,8 +8,6 @@ import ents.ResultBar;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxState;
-import flixel.system.scaleModes.PixelPerfectScaleMode;
-import flixel.system.scaleModes.StageSizeScaleMode;
 import flixel.text.FlxText;
 import flixel.tweens.FlxTween;
 import flixel.tweens.FlxEase;
@@ -28,10 +26,6 @@ class PlayState extends FlxState {
 	
 	override public function create():Void {
 		super.create();
-		
-		FlxG.camera.bgColor = Reg.color.bg;
-		FlxG.scaleMode = new PixelPerfectScaleMode();
-		FlxG.mouse.load("assets/images/cursor.png", 1);
 		
 		keypad = new KeyPad(0, FlxG.height);
 		add(keypad);

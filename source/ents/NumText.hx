@@ -41,7 +41,11 @@ class NumText extends FlxGroup {
 	}
 	
 	public function getWidth():Int {
-		return text.length * NumTextChar.SIZE;
+		return text.length * Reg.fSize;
+	}
+	
+	public function getHeight():Int {
+		return Reg.fSize;
 	}
 	
 	public function setColor(Color:Int):Void {
@@ -54,7 +58,7 @@ class NumText extends FlxGroup {
 	override public function update():Void {
 		for (i in 0...members.length) {
 			var char:NumTextChar = cast members[i];
-			char.x = NumTextChar.SIZE * i + x;
+			char.x = Reg.fSize * i + x;
 			char.y = y;
 		}
 		
@@ -64,13 +68,11 @@ class NumText extends FlxGroup {
 
 class NumTextChar extends FlxSprite {
 	
-	static public inline var SIZE:Int = 36;
-	
 	public var char:String;
 	
 	public function new(Char:String) {
 		super();
-		loadGraphic("assets/images/font.png", true, SIZE, SIZE);
+		loadGraphic("assets/images/font.png", true, Reg.fSize, Reg.fSize);
 		
 		animation.add("0", [ 0], 30, false);
 		animation.add("1", [ 1], 30, false);
