@@ -9,15 +9,15 @@
 	
 	<uses-sdk android:minSdkVersion="9" android:targetSdkVersion="16"/>
 	
-	<application android:icon="@drawable/icon" android:label="The Very Zen Mental Math Machine" android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
+	<application android:icon="@drawable/icon" android:label="Very Zen Mental Math Machine" android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
 		
-		<activity android:keepScreenOn="true" android:configChanges="keyboard|keyboardHidden|orientation|screenSize" android:label="The Very Zen Mental Math Machine" android:launchMode="singleTask" android:name="com.fouramgames.zenmathmachine.MainActivity" android:screenOrientation="sensorPortrait" android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
+		<activity android:keepScreenOn="true" android:configChanges="keyboard|keyboardHidden|orientation|screenSize" android:label="Very Zen Mental Math Machine" android:launchMode="singleTask" android:name="com.fouramgames.zenmathmachine.MainActivity" android:screenOrientation="sensorPortrait" android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
 			
-			<intent-filter android:icon="@drawable/icon" android:label="The Very Zen Mental Math Machine">
+			<intent-filter android:icon="@drawable/icon" android:label="Very Zen Mental Math Machine">
 				<action android:name="android.intent.action.MAIN"/>
 				<category android:name="android.intent.category.LAUNCHER"/>
 			</intent-filter>
-			<intent-filter android:icon="@drawable/icon" android:label="The Very Zen Mental Math Machine">
+			<intent-filter android:icon="@drawable/icon" android:label="Very Zen Mental Math Machine">
 				<action android:name="android.intent.action.MAIN"/>
 				<category android:name="tv.ouya.intent.category.GAME"/>
 			</intent-filter>
