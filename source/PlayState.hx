@@ -1,6 +1,7 @@
 package;
 
 import ents.ColorPalette;
+import ents.HintArrow;
 import ents.KeyPad;
 import ents.NumText;
 import ents.ResultBar;
@@ -37,6 +38,11 @@ class PlayState extends FlxState {
 		FlxTween.tween(keypad, {"y": 240}, 0.7, {ease: FlxEase.elasticOut});
 		
 		addChallenge();
+		if (!Reg.hintShown) {
+			var a:HintArrow = new HintArrow(cur.width + 4, (cur.height - 44 - 36) / 2);
+			cur.add(a);
+			Reg.hintShown = true;
+		}
 	}
 	
 	private function addChallenge():Void {

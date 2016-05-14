@@ -32,6 +32,7 @@ class Reg {
 	
 	static public var s:PlayState;
 	static public var mode:Class<BaseMode>;
+	static public var hintShown:Bool = false;
 	
 	static public function initDebug():Void {
 		FlxG.console.addCommand(["es"], eraseSave);
