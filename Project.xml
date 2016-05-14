@@ -2,7 +2,7 @@
 <project>
 	<!------------------------------APPLICATION SETTINGS---------------------------->
 	
-	<app title="Mental Calc" file="MentalCalc" main="Main" version="1.0.0" company="4AM Games" />
+	<app title="The Very Zen Mental Math Machine" file="ZenMathMachine" main="Main" version="1.0.0" company="4AM Games" />
 	
 	<!--The flixel preloader is not accurate in Chrome. You can use it regularly if you embed the swf into a html file
 	<!--or you can set the actual size of your file manually at "FlxPreloaderBase-onUpdate-bytesTotal"!-->
@@ -20,7 +20,7 @@
 	<window if="web" orientation="portrait" />
 	
 	<!--Desktop-specific-->
-	<window if="desktop" orientation="landscape" fullscreen="false" resizable="true" />
+	<window if="desktop" orientation="landscape" fullscreen="false" resizable="false" borderless="true" />
 	
 	<!--Mobile-specific-->
 	<window if="mobile" orientation="portrait" fullscreen="true" width="320" height="480" />
@@ -79,4 +79,9 @@
 	<!--------------------------------CUSTOM---------------------------------------->
 	
 	<!--Place custom nodes like icons here (higher priority to override the HaxeFlixel icon)-->
+	
+	<android install-location="preferExternal" />
+	<template path="AndroidManifest.xml" rename="AndroidManifest.xml" if="android"/>
+	<certificate path="android_key.keystore" alias="zenmathmachine" />
+	
 </project>

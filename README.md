@@ -1,4 +1,6 @@
+# The Very Zen Mental Math Machine (ZenMathMachine)
+
 # TODO
 * Varying difficulty
-* Name
-* Android build & icon
+* Android build
+* Icons

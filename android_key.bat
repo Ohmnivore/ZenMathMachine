@@ -1,0 +1,1 @@
+"C:\Program Files\Java\jdk1.6.0_37\bin\keytool.exe" -genkey -v -keystore android_key.keystore -alias zenmathmachine -keyalg RSA -keysize 2048 -validity 1000000
