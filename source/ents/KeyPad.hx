@@ -3,7 +3,7 @@ import ents.KeyPad.Key;
 import ents.NumText.NumTextChar;
 import flixel.FlxG;
 import flixel.FlxSprite;
-import flixel.group.FlxGroup;
+import flixel.group.FlxTypedGroup;
 import flixel.tweens.FlxTween;
 import flixel.tweens.FlxEase;
 
@@ -11,7 +11,7 @@ import flixel.tweens.FlxEase;
  * ...
  * @author Ohmnivore
  */
-class KeyPad extends FlxGroup {
+class KeyPad extends FlxTypedGroup<Key> {
 	
 	public var x:Float;
 	public var y:Float;
@@ -46,7 +46,7 @@ class KeyPad extends FlxGroup {
 		super.update();
 		
 		for (i in 0...members.length) {
-			var key:Key = cast members[i];
+			var key:Key = members[i];
 			key.x = x + key.offsetx;
 			key.y = y + key.offsety;
 		}
@@ -61,7 +61,7 @@ class KeyPad extends FlxGroup {
 	}
 }
 
-class Key extends FlxGroup {
+class Key extends FlxTypedGroup<FlxSprite> {
 	
 	public var x:Float;
 	public var y:Float;

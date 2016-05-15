@@ -1,12 +1,12 @@
 package ents;
-import flixel.group.FlxGroup;
+import flixel.group.FlxTypedGroup;
 import flixel.FlxSprite;
 
 /**
  * ...
  * @author Ohmnivore
  */
-class NumText extends FlxGroup {
+class NumText extends FlxTypedGroup<NumTextChar> {
 	
 	public var x:Float;
 	public var y:Float;
@@ -49,15 +49,13 @@ class NumText extends FlxGroup {
 	}
 	
 	public function setColor(Color:Int):Void {
-		for (i in 0...members.length) {
-			var char:NumTextChar = cast members[i];
+		for (char in members)
 			char.color = Color;
-		}
 	}
 	
 	override public function update():Void {
 		for (i in 0...members.length) {
-			var char:NumTextChar = cast members[i];
+			var char:NumTextChar = members[i];
 			char.x = Reg.fSize * i + x;
 			char.y = y;
 		}

@@ -4,7 +4,6 @@ The project took around four days to complete. Some parts of the code could defi
 
 # TODO
 * Better division challenge generator
-* Clean up code
 
 # Solarized
 The color palettes I used were designed by Ethan Schoonover: [http://ethanschoonover.com/solarized]
